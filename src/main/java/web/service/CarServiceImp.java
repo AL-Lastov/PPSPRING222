@@ -1,7 +1,8 @@
-package service;
+package web.service;
 
-import model.Car;
+
 import org.springframework.stereotype.Service;
+import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,15 @@ public class CarServiceImp implements CarService {
 
     private List<Car> addCars() {
         List<Car> listCar = new ArrayList<>();
-        listCar.add(new Car("Toyota Camry", "Red", 2012));
-        listCar.add(new Car("BMW X5", "Black", 2017));
-        listCar.add(new Car("Lada Vesta", "White", 2010));
-        listCar.add(new Car("Audi A6", "Blue", 2022));
-        listCar.add(new Car("Kia Rio", "Grey", 2019));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+        listCar.add(new Car("Model", "Color", 1234));
+
         return listCar;
     }
 
