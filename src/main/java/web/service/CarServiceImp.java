@@ -1,44 +1,35 @@
 package web.service;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import web.dao.CarDao;
 import web.model.Car;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 @Service
 public class CarServiceImp implements CarService {
-    private List<Car> cars;
-
-    public CarServiceImp() {
-        this.cars = addCars();
+    private CarDao carDao;
+@Autowired
+    public CarServiceImp(CarDao carDao) {
+        this.carDao = carDao;
     }
 
-    private List<Car> addCars() {
-        List<Car> listCar = new ArrayList<>();
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-        listCar.add(new Car("Model", "Color", 1234));
-
-        return listCar;
+    public List<Car> getAllCars() {
+        return carDao.getAllCars();
     }
 
     @Override
-    public List<Car> getCars(Optional<Integer> count) {
-        if(count.isEmpty()){
-            return new ArrayList<>(cars);
+    public List<Car> getCars(int count) {
+        if (count <= 0) {
+            return carDao.getAllCars();
         }
-        int digitCout = count.get();
-        if(digitCout <=0 || digitCout >= cars.size()){
-            return new ArrayList<>(cars);
+        if (count >= carDao.getAllCars().size()) {
+            return carDao.getAllCars();
         }
-        return new ArrayList<>(cars.subList(0, digitCout));
+        return carDao.getCarSub(count);
     }
+
 
 }
